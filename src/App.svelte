@@ -6,6 +6,9 @@
   let people: number | null;
   let tip: number | null;
 
+  let customTipInput: boolean = false;
+  let customTipInputElement: HTMLInputElement;
+
   let bill_per_person = writable<number>(0);
   let tip_per_person = writable<number>(0);
 
@@ -16,22 +19,34 @@
     $tip_per_person = Number((tip_amount / people).toFixed(2));
   }
 
+  $: if (customTipInput) {
+    setTimeout(() => customTipInputElement.focus(), 0);
+  }
+
+  function toggleCustomTipInput() {
+    customTipInput = !customTipInput;
+    tip = null;
+  }
+
   function resetValues(event: MouseEvent) {
     event.preventDefault();
 
     bill = null;
     tip = null;
     people = null;
+    customTipInput = false;
     $bill_per_person = 0;
     $tip_per_person = 0;
   }
 </script>
 
 <main class="grid place-items-center h-screen">
-  <div class="my-10 text-xl text-cyan-600">
-    <h1>SPLI</h1>
-    <h1>TTER</h1>
-  </div>
+  <section class="my-10 text-xl text-cyan-600">
+    <h1 class="grid grid-cols-1">
+      <span class="tracking-widest">SPLI</span>
+      <span class="tracking-widest">TTER</span>
+    </h1>
+  </section>
   <section class="bg-white rounded-t-3xl p-6 w-full h-screen">
     <form class="grid grid-cols-1">
       <label class="input-header" for="bill">Bill</label>
@@ -52,6 +67,7 @@
             value="5"
             name="percentage"
             bind:group={tip}
+            on:click={() => (customTipInput = false)}
           />
           <label for="t5">5%</label>
         </li>
@@ -63,6 +79,7 @@
             value="10"
             name="percentage"
             bind:group={tip}
+            on:click={() => (customTipInput = false)}
           />
           <label for="t10">10%</label>
         </li>
@@ -74,6 +91,7 @@
             value="15"
             name="percentage"
             bind:group={tip}
+            on:click={() => (customTipInput = false)}
           />
           <label for="t15">15%</label>
         </li>
@@ -85,6 +103,7 @@
             value="25"
             name="percentage"
             bind:group={tip}
+            on:click={() => (customTipInput = false)}
           />
           <label for="t25">25%</label>
         </li>
@@ -96,13 +115,34 @@
             value="50"
             name="percentage"
             bind:group={tip}
+            on:click={() => (customTipInput = false)}
           />
           <label for="t50">50%</label>
+        </li>
+        <li>
+          {#if customTipInput}
+            <input
+              class="input input-custom-tip"
+              type="number"
+              step="1"
+              bind:value={tip}
+              bind:this={customTipInputElement}
+              on:focusout={!tip && toggleCustomTipInput}
+            />
+          {:else}
+            <button
+              type="button"
+              class="custom-tip-button"
+              on:click={toggleCustomTipInput}
+            >
+              Custom
+            </button>
+          {/if}
         </li>
       </ul>
       <label class="input-header" for="people">Number of People</label>
       <input class="input" type="number" id="people" bind:value={people} />
-      <div class="grid p-5 bg-cyan-600 rounded-lg">
+      <div class="grid p-5 bg-cyan-600 rounded-2xl">
         <div class="grid grid-flow-col py-4 items-center place-content-between">
           <div class="text-white">
             <p class="text-sm">Tip Amount</p>
@@ -137,12 +177,12 @@
   .btn-green {
     @apply bg-cyan-500 text-cyan-600;
   }
-  .btn-green:hover {
+  .btn-green:active {
     @apply bg-grayish-cyan-200;
   }
 
   .input {
-    @apply bg-gray-200 rounded-md text-cyan-600 text-right py-2 px-3;
+    @apply bg-grayish-cyan-100 rounded-md text-cyan-600 text-right py-2 px-3;
   }
 
   .input-header {
@@ -167,5 +207,13 @@
   .radio-button:checked + label {
     background-color: theme(colors.cyan.500);
     color: theme(colors.cyan.600);
+  }
+  .custom-tip-button {
+    @apply flex justify-center cursor-pointer font-bold rounded py-2 px-3 w-full;
+    @apply bg-grayish-cyan-100 text-grayish-cyan-400;
+  }
+
+  .input-custom-tip {
+    @apply bg-grayish-cyan-100 rounded-md text-grayish-cyan-400 text-right py-2 px-3 w-full;
   }
 </style>
