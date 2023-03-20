@@ -2,7 +2,7 @@
   import "./app.css";
 
   import Input from "./lib/Input.svelte";
-  import CalculationCard from "./lib/CalculationCard.svelte";
+  import CalculationCard from "./lib/CalculationCard/CalculationCard.svelte";
   import TipItem from "./lib/TipList/TipItem.svelte";
 
   import dollarIcon from "./assets/icon-dollar.svg";
@@ -57,8 +57,10 @@
       <span class="tracking-widest">TTER</span>
     </h1>
   </figure>
-  <section class="bg-white rounded-t-3xl p-6 w-full h-screen">
-    <form class="grid grid-cols-1">
+  <section
+    class="bg-white rounded-t-3xl p-6 w-full h-full md:w-[768px] md:h-auto md:rounded-3xl"
+  >
+    <form class="grid grid-cols-1 md:grid-flow-col md:grid-cols-2 md:gap-6">
       <section class="px-2">
         <Input
           title="Bill"
@@ -69,7 +71,9 @@
         />
         <section class="my-7">
           <h3 class="text-sm mb-2">Select Tip %</h3>
-          <ul class="grid grid-cols-2 grid-rows-3 gap-4">
+          <ul
+            class="grid grid-cols-2 grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2"
+          >
             {#each tipPercentages as percentage}
               <li>
                 <TipItem
@@ -126,11 +130,11 @@
   }
 
   .input-custom-tip {
-    @apply bg-grayish-cyan-100 rounded-md text-grayish-cyan-400 text-2xl text-center p-2 w-full;
+    @apply bg-grayish-cyan-100 rounded-md text-grayish-cyan-400 text-xl text-center p-2 w-full;
   }
 
   .custom-tip-button {
-    @apply flex justify-center cursor-pointer font-bold text-2xl rounded p-2 w-full;
+    @apply flex justify-center cursor-pointer font-bold text-xl rounded p-2 w-full;
     @apply bg-grayish-cyan-100 text-grayish-cyan-400;
   }
 </style>
