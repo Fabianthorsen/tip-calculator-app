@@ -1,2 +1,4 @@
 [build]
-    base="src/"
+  command = "vite build"
+  functions = "netlify/functions"
+  publish = "dist"
