@@ -1,7 +1,7 @@
 <script lang="ts">
   import "./app.css";
 
-  import Input from "./lib/Input.svelte";
+  import Input from "./lib/Input/Input.svelte";
   import CalculationCard from "./lib/CalculationCard/CalculationCard.svelte";
   import TipItem from "./lib/TipList/TipItem.svelte";
 
