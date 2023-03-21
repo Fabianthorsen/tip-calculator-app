@@ -57,8 +57,10 @@
   }
 </script>
 
-<main class="">
-  <div class="flex flex-col items-center justify-center h-full md:h-screen">
+<main>
+  <div
+    class="flex flex-col items-center justify-center h-full md:h-screen shadow-md"
+  >
     <figure class="my-10 md:mb-14 md:my-0 text-lg text-cyan-600">
       <h1 class="text-2xl grid grid-cols-1">
         <span class="tracking-widest">SPLI</span>
