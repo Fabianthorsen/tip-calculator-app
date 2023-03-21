@@ -82,7 +82,7 @@
             step="0.01"
           />
           <section class="my-7">
-            <h3 class="text-sm mb-2">Select Tip %</h3>
+            <h2 class="text-sm mb-2">Select Tip %</h2>
             <ul
               class="grid grid-cols-2 grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2"
             >
