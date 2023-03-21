@@ -2,6 +2,9 @@
 module.exports = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
+    letterSpacing: {
+      widest: ".5em",
+    },
     extend: {
       colors: {
         "grayish-cyan": {
