@@ -1,9 +1,9 @@
 <script lang="ts">
   import "./app.css";
 
-  import Input from "./lib/Input/Input.svelte";
-  import CalculationCard from "./lib/CalculationCard/CalculationCard.svelte";
-  import TipItem from "./lib/TipList/TipItem.svelte";
+  import Input from "/src/lib/Input/Input.svelte";
+  import CalculationCard from "/src/lib/CalculationCard/CalculationCard.svelte";
+  import TipItem from "/src/lib/TipList/TipItem.svelte";
 
   import dollarIcon from "./assets/icon-dollar.svg";
   import personIcon from "./assets/icon-person.svg";
